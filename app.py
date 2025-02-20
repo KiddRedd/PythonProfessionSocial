@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from pymongo import MongoClient
 import os
-from werkzeug.utils import secure_filename
+import base64
 
 app = Flask(__name__)
 
@@ -27,14 +27,13 @@ def submit():
     if 'profile_picture' in request.files:
         file = request.files['profile_picture']
         if file.filename != '':
-            filename = secure_filename(file.filename)
-            file.save(os.path.join('/path/to/save/pictures', filename))
+            pic_binary = base64.b64encode(file.read())
             collection.insert_one({
                 "first_name": first_name,
                 "last_name": last_name,
                 "location": location,
                 "profession": profession,
-                "profile_picture": filename
+                "profile_picture": pic_binary
             })
     
     return redirect(url_for('index'))

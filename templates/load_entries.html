@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Load Entries</title>
+    <style>
+        .profile-picture {
+            max-width: 320px;
+            max-height: 250px;
+        }
+    </style>
 </head>
 <body>
     <h1>All Entries</h1>
@@ -20,9 +26,10 @@
             <td>{{ entry.last_name }}</td>
             <td>{{ entry.location }}</td>
             <td>{{ entry.profession }}</td>
-            <td><img src="/path/to/save/pictures/{{ entry.profile_picture }}" alt="Profile Picture"></td>
+            <td><img src="data:image/png;base64,{{ entry.profile_picture.decode('utf-8') }}" alt="Profile Picture" class="profile-picture" > </td>
         </tr>
         {% endfor %}
     </table>
+    <h2> <a href="http://localhost:5000">Go Back </a></h2>
 </body>
 </html>
