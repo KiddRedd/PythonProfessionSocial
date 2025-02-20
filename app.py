@@ -6,7 +6,7 @@ import base64
 app = Flask(__name__)
 
 # MongoDB configuration
-client = MongoClient('mongodb+srv://YowLA:57UEZjH3bSiBqcu0dD1T@mongodb-dcf69aeb-oa8133ac6.database.cloud.ovh.net/admin?replicaSet=replicaset&tls=true')
+client = MongoClient('mongodb+srv://<username>:<password>@mongodb-xasdsawa.net/admin?replicaSet=replicaset&tls=true')
 db = client['users_db']
 collection = db['users']
 
